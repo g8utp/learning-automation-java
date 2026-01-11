@@ -12,7 +12,7 @@ public abstract class BaseTest {
     public static void setUp(){
             Configuration.browser = "chrome";
             Configuration.browserSize = "1920x1080";
-            Configuration.headless = false;
+//            Configuration.headless = false;
             Configuration.baseUrl = "https://www.saucedemo.com";
             SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                     .screenshots(true)
