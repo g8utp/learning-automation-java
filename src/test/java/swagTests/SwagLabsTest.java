@@ -18,19 +18,22 @@ public class SwagLabsTest {
         try{
             driver.get("https://www.saucedemo.com/");
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name"))).
-                    sendKeys("standard-user");
+                    sendKeys("standard_user");
             driver.findElement(By.id("password")).sendKeys("secret_sauce");
             driver.findElement(By.id("login-button")).click();
             driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
-            driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("inventory_item_name")));
+            driver.findElement(By.className("shopping_cart_link")).click();
+            WebElement itemInCart = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.className("inventory_item_name")));
+            String actualItemName = itemInCart.getText();
+            Assertions.assertEquals("Sauce Labs Backpack", actualItemName, "Название товара неправильное");
             driver.findElement(By.id("checkout")).click();
             WebElement firstNameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first-name")));
             firstNameInput.sendKeys("Tony");
             driver.findElement(By.id("last-name")).sendKeys("Leb");
             driver.findElement(By.id("postal-code")).sendKeys("123456");
             driver.findElement(By.id("continue")).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("finish"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("finish"))).click();
             WebElement thankYouForYourOrder = driver.findElement(By.className("complete-header"));
             String actualText = thankYouForYourOrder.getText();
             String expectedText = "Thank you for your order!";

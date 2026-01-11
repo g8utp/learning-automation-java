@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.11.2'
 }
 
 group 'org.example'
@@ -18,8 +19,27 @@ dependencies {
     testImplementation 'org.slf4j:slf4j-api:2.0.16'
     testImplementation 'ch.qos.logback:logback-classic:1.4.14'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testImplementation 'io.qameta.allure:allure-selenide:2.25.0'
 }
 
 test {
     useJUnitPlatform()
+}
+
+allure {
+    adapter {
+        frameworks {
+            junit5 {
+                adapterVersion = '2.25.0'
+            }
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    systemProperty "file.encoding", "UTF-8"
 }
