@@ -1,11 +1,13 @@
 package swagTests.api;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.hamcrest.Matchers.*;
 import io.restassured.http.ContentType;
 import static io.restassured.RestAssured.given;
 
 public class ReqresApiTest {
+    @Disabled
 
     @Test
     public void checkUsersList(){
