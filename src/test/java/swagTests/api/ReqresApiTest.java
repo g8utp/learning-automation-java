@@ -5,9 +5,8 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.Matchers.*;
 import io.restassured.http.ContentType;
 import static io.restassured.RestAssured.given;
-
+@Disabled
 public class ReqresApiTest {
-    @Disabled
 
     @Test
     public void checkUsersList(){
